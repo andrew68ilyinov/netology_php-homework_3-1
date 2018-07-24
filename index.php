@@ -38,16 +38,45 @@ DOC;
 
 class Cars // Описание класса машин
 {
+    const WHEELS = 4;        // 4 колеса
+    
     public $brand;    // Марка, напр. 'Toyota'
     public $model;    // Модель (Rav4)
     public $color;    // Цвет
     public $complect; // Комплектация
     public $price;    // Цена
-    public $discount; // Скидка
     
-    public function getPrice($price, $discount) {
-        $finalPrice = $price * $discount / 100;
+    public function __construct($brand = 1, $model = 1, $color = 'Yellow', $complect = 25, $price = 100)
+    {
+        $this->brand    = $brand;
+        $this->model    = $model;
+        $this->color    = $color;
+        $this->complect = $complect;
+        $this->price    = $price;
+    }
+    
+    public function getPrice($discount)
+    {
+        if ($discount = 0) {
+            $finalPrice = $this->price;
+        } else {
+            $finalPrice = $this->price * $discount / 100;
+        }
+        echo $finalPrice;
         return $finalPrice;
     }
 }
+
+$car1 = new Cars();
+$car1->brand    = 'Toyota';
+$car1->model    = 'Rav4';
+$car1->color    = 'White';
+$car1->complect = 'U287';
+$car1->price    = 1100000;
+
+$car2 = new Cars('BMW', 'X5', 'Black', 'Y8651', 3500000);
+
+echo '<br>' . 'Итоговая цена машины марки Toyota: ' . $car1->getPrice(0);
+echo '<br>' . 'Итоговая цена машины марки BMW: ' . $car2->getPrice(5); // Дадим скидку 5 процентов
+
 
