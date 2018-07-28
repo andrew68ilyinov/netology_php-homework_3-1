@@ -124,6 +124,90 @@ class Pens
     public $brand;
     public $color;
     public $widthWright; // Толщина линии письма
+    public $price;
     
+    public function __construct($brand = 1, $color = 'Blue', $widthWright = 0.8, $price = 1)
+    {
+        $this->brand       = $brand;
+        $this->color       = $color;
+        $this->widthWright = $widthWright;
+        $this->price       = $price;
+    }
     
+    public function getPen()
+    {
+        echo 'Вы купили: ' . $this->brand . ' ' . $this->color . ' ' . $this->widthWright . ' ' . $this->price;
+    }
 }
+
+$pen1 = new Pens('Schneider', $color = 'Black', $widthWright = 0.8, $price = 89);
+$pen2 = new Pens('Berlingo', 'Black', 0.7, 32);
+
+
+/*
+ *  4) Утки
+ */
+
+class Ducks
+{
+    const WINGS = 2;  // 2 крыла
+    
+    public $sex;    // Пол утки
+    public $weight; // Вес
+    public $age;    // Возраст
+    
+    public function __construct($sex = 'male', $weight = 1, $age = 1)
+    {
+        $this->sex    = $sex;
+        $this->weight = $weight;
+        $this->age    = $age;
+    }
+    
+    public function qryak($num)  // Утка крякает определенное кол-во раз
+    {
+        for ($i = 1; $i < $num; $i++) {
+            echo 'Qryuak!';
+        }
+    }
+}
+
+$duck1 = new Ducks('male', 2, 2);
+$duck2 = new Ducks('female', 1, 1);
+
+$duck1->qryak(3); // 1-я утка крякнула 3 раза
+
+
+/*
+ *  5) Товар абстрактный
+ */
+
+class Goods
+{
+    public $aggregateState; // Жидкое или твердое (2 состояния)
+    public $weight;
+    public $amount;
+    public $price;
+    
+    public function __construct($aggregateState = 'liquid', $weight = 1, $amount = 100, $price = 1000)
+    {
+        $this->aggregateState = $aggregateState;
+        $this->weight         = $weight;
+        $this->amount         = $amount;
+        $this->price          = $price;
+    }
+    
+    public function changeAggregate($type) // Метод перевода агрегатного состояния в другое
+    {
+        if ($type === 'liquid') {
+            $newAggregateState = 'solid';
+        } else {
+            $newAggregateState = 'liquid';
+        }
+        return $newAggregateState;
+    }
+}
+
+$good1 = new Goods('liquid', 1000, 250, 54000);
+$good2 = new Goods('solid', 50000, 340, 641);
+
+$good2->changeAggregate($this->aggregateState); // Меняем агрегатное состояние
